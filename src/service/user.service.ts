@@ -24,10 +24,7 @@ export class UserService {
 
   // 查询单条数据
   async findByUid(uid: string): Promise<User> {
-    console.log('findByUid', uid);
     const userFind = await this.userModel.findOne({ where: { uid: uid } });
-    console.log('查找到的数据', userFind);
-
     return userFind;
   }
 
@@ -35,16 +32,20 @@ export class UserService {
   async delete(uid: string): Promise<User> {
     const user = await this.userModel.findOne({
       where: {
-        uid: '20191003030',
+        uid: uid,
       },
     });
     // 删除单个
+    console.log('删除的数据', user);
+
     const res = await this.userModel.remove(user);
+    console.log('删除的结果', res);
+
     return res;
   }
 
   // 更新数据
-  async update() {
+  async update(user: User): Promise<User> {
     const userToUpdate = await this.userModel.findOne({
       where: {
         uid: '20191003030',
@@ -53,5 +54,7 @@ export class UserService {
     userToUpdate.uid = '20191003031';
 
     await this.userModel.save(userToUpdate);
+
+    return userToUpdate;
   }
 }
