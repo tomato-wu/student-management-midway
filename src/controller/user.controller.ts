@@ -30,7 +30,6 @@ export class UserController {
   @Post('/update', { description: '修改信息' })
   async update(@Body() user: User): Promise<User> {
     const res = await this.userService.update(user);
-    console.log('修改成功', res);
     return res;
   }
   // 删

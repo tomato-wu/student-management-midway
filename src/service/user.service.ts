@@ -46,15 +46,7 @@ export class UserService {
 
   // 更新数据
   async update(user: User): Promise<User> {
-    const userToUpdate = await this.userModel.findOne({
-      where: {
-        uid: '20191003030',
-      },
-    });
-    userToUpdate.uid = '20191003031';
-
-    await this.userModel.save(userToUpdate);
-
+    const userToUpdate = await this.userModel.save(user);
     return userToUpdate;
   }
 }
