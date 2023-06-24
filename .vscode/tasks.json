@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "cov",
+			"problemMatcher": [],
+			"label": "npm: cov",
+			"detail": "midway-bin cov --ts"
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"problemMatcher": [],
+			"label": "npm: dev",
+			"detail": "cross-env NODE_ENV=local midway-bin dev --ts"
+		}
+	]
+}
