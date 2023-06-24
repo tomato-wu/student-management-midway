@@ -11,30 +11,45 @@ export class UserController {
   @Get('/findAllUser', { description: '获取所有用户' })
   async findAll() {
     const user = await this.userService.findUserAll();
-    console.log('答应', user);
-    return user;
+    if (!user) {
+      return { status: 404, message: 'Not Data' };
+    }
+    return { status: 200, message: 'success', data: user };
   }
   // 查
   @Get('/findByUid', { description: '通过主键查找' })
-  async findById(@Query('uid') uid: string): Promise<User> {
-    return this.userService.findByUid(uid);
+  async findById(@Query('uid') uid: string) {
+    const UserByUid = await this.userService.findByUid(uid);
+    if (!UserByUid) {
+      return { status: 404, message: 'Not Data' };
+    }
+    return { status: 200, message: 'success', data: UserByUid };
   }
   // 增
   @Post('/create', { description: '创建' })
-  async create(@Body() user: User): Promise<User> {
+  async create(@Body() user: User) {
     const res = await this.userService.create(user);
-    console.log('创建成功', res);
-    return res;
+    if (!res) {
+      return { status: 404, message: 'Not Data' };
+    }
+    return { status: 200, message: 'success', data: res };
   }
   // 改
   @Post('/update', { description: '修改信息' })
-  async update(@Body() user: User): Promise<User> {
+  async update(@Body() user: User) {
     const res = await this.userService.update(user);
-    return res;
+    if (!res) {
+      return { status: 404, message: 'Not Data' };
+    }
+    return { status: 200, message: 'success', data: res };
   }
   // 删
   @Post('/delete', { description: '删除' })
-  async delete(@Query('uid') uid: string): Promise<User> {
-    return this.userService.delete(uid);
+  async delete(@Query('uid') uid: string) {
+    const res = await this.userService.delete(uid);
+    if (!res) {
+      return { status: 404, message: 'Not Data' };
+    }
+    return { status: 200, message: 'success', data: res };
   }
 }
