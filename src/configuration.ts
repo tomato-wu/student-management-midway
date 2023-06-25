@@ -7,10 +7,12 @@ import { join } from 'path';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as orm from '@midwayjs/typeorm';
+import * as crossDomain from '@midwayjs/cross-domain';
 
 @Configuration({
   imports: [
     orm, // 引入orm组件
+    crossDomain, //跨域
     koa,
     validate,
     {

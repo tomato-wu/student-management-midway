@@ -6,6 +6,9 @@ export default {
   koa: {
     port: 7001,
   },
+  cors: {
+    credentials: false,
+  },
   //  添加orm配置
   typeorm: {
     dataSource: {
