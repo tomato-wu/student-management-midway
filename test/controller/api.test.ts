@@ -9,7 +9,7 @@ describe('test/controller/home.test.ts', () => {
     // make request
     const result = await createHttpRequest(app)
       .get('/api/get_user')
-      .query({ uid: 123 });
+      .query({ key: 123 });
 
     // use expect by jest
     expect(result.status).toBe(200);

@@ -23,27 +23,25 @@ export class UserService {
   }
 
   // 查询单条数据
-  async findByUid(uid: string): Promise<User[]> {
-    if (!uid) {
+  async findByKey(key: string): Promise<User[]> {
+    if (!key) {
       return this.findUserAll();
     } else {
-      const userFind = await this.userModel.findOne({ where: { uid: uid } });
+      const userFind = await this.userModel.findOne({ where: { key: key } });
       return [userFind];
     }
   }
 
   // 删除数据
-  async delete(uid: string): Promise<User> {
+  async delete(key: string): Promise<User> {
     const user = await this.userModel.findOne({
       where: {
-        uid: uid,
+        key: key,
       },
     });
     // 删除单个
-    console.log('删除的数据', user);
 
     const res = await this.userModel.remove(user);
-    console.log('删除的结果', res);
 
     return res;
   }

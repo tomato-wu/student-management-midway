@@ -15,7 +15,7 @@ export class EmployeeService {
   //   return createdEmployee;
   // }
 
-  // 分支信息
+  // 分支
   // 查询所有数据
   // async findEmployeeAll(): Promise<Employee[]> {
   //   // find All

@@ -17,13 +17,13 @@ export class UserController {
     return { status: 200, message: 'success', data: user };
   }
   // 查
-  @Get('/findByUid', { description: '通过主键查找' })
-  async findById(@Query('uid') uid: string) {
-    const UserByUid = await this.userService.findByUid(uid);
-    if (!UserByUid) {
+  @Get('/findBykey', { description: '通过主键查找' })
+  async findById(@Query('key') key: string) {
+    const UserBykey = await this.userService.findByKey(key);
+    if (!UserBykey) {
       return { status: 404, message: 'Not Data' };
     }
-    return { status: 200, message: 'success', data: UserByUid };
+    return { status: 200, message: 'success', data: UserBykey };
   }
   // 增
   @Post('/create', { description: '创建' })
@@ -45,8 +45,8 @@ export class UserController {
   }
   // 删
   @Post('/delete', { description: '删除' })
-  async delete(@Query('uid') uid: string) {
-    const res = await this.userService.delete(uid);
+  async delete(@Query('key') key: string) {
+    const res = await this.userService.delete(key);
     if (!res) {
       return { status: 404, message: 'Not Data' };
     }
