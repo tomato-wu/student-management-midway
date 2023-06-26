@@ -23,9 +23,13 @@ export class UserService {
   }
 
   // 查询单条数据
-  async findByUid(uid: string): Promise<User> {
-    const userFind = await this.userModel.findOne({ where: { uid: uid } });
-    return userFind;
+  async findByUid(uid: string): Promise<User[]> {
+    if (!uid) {
+      return this.findUserAll();
+    } else {
+      const userFind = await this.userModel.findOne({ where: { uid: uid } });
+      return [userFind];
+    }
   }
 
   // 删除数据
